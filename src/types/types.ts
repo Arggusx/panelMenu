@@ -14,7 +14,7 @@ export interface Burger extends Product {
 }
 
 export interface Beverage extends Product {
-  description?: string;
+  description?: string;
 }
 export interface OrderItem {
   id: number;

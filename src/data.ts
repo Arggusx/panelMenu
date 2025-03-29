@@ -1,4 +1,4 @@
-import { Burger, Beverage } from './types/types';
+import { Burger, Beverage } from "./types/types"
 
 // Artesanal Burgers
 export const burgers: Burger[] = [
