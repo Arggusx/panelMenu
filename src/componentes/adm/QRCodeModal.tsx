@@ -1,6 +1,6 @@
 import React, { useEffect} from 'react';
 import { X } from 'lucide-react';
-import { Order } from '../../types/Order';
+import { Order } from '../../types/types';
 import WhatsAppButton from './WhatsAppButton';
 
 interface QRCodeModalProps {
