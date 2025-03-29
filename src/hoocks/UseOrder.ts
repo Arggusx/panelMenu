@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Order, OrderStatus } from '../types/Order';
+import { Order, OrderStatus } from '../types/types';
 
 // In a real application, this would fetch data from an API
 const mockOrders: Order[] = [

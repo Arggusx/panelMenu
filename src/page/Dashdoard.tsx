@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import OrderCard from '../componentes/adm/OrdrCard';
-import { OrderStatus } from '../types/Order';
+import { OrderStatus } from '../types/types';
 import { useOrders } from '../hoocks/UseOrder';
 import { ClipboardList } from 'lucide-react';
 

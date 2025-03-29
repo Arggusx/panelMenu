@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Order } from '../../types/Order';
+import { Order } from '../../types/types';
 import OrderStatusBadge from './OrderStatusBadge';
 import QRCodeModal from './QRCodeModal';
 import { formatCurrency } from '../../utils/utils';
