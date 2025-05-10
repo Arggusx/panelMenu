@@ -5,7 +5,7 @@ import { useOrders } from '../hoocks/UseOrder';
 import { ClipboardList, AlertTriangle } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
-  const { orders, loading, error, updateOrderStatus, filterOrdersByStatus } = useOrders();
+  const { orders, loading, error, patchOrderStatus, filterOrdersByStatus } = useOrders();
   const [statusFilter, setStatusFilter] = useState<OrderStatus | undefined>(undefined);
 
   const filteredOrders = filterOrdersByStatus(statusFilter);
@@ -43,7 +43,7 @@ const Dashboard: React.FC = () => {
 
   // Calcula os totais para cada status
   const pendingCount = orders.filter(order => order.status === 'Pendente').length;
-  const preparingCount = orders.filter(order => order.status === 'Em preparo').length;
+  const preparingCount = orders.filter(order => order.status === 'EmPreparo').length;
   const readyCount = orders.filter(order => order.status === 'Pronto').length;
   const deliveredCount = orders.filter(order => order.status === 'Entregue').length;
 
@@ -82,7 +82,7 @@ const Dashboard: React.FC = () => {
             <p className="text-xl font-bold text-yellow-900">{pendingCount}</p>
           </div>
           <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 cursor-pointer hover:bg-blue-100 transition-colors"
-               onClick={() => setStatusFilter('Em preparo')}>
+               onClick={() => setStatusFilter('EmPreparo')}>
             <p className="text-sm text-blue-800 font-medium">Em preparo</p>
             <p className="text-xl font-bold text-blue-900">{preparingCount}</p>
           </div>
@@ -117,7 +117,7 @@ const Dashboard: React.FC = () => {
             <OrderCard 
               key={order.id} 
               order={order} 
-              onStatusChange={updateOrderStatus} 
+              onStatusChange={patchOrderStatus} 
             />
           ))}
         </div>

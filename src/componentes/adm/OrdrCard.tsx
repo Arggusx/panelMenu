@@ -1,45 +1,54 @@
 import React, { useState } from 'react';
-import { Order } from '../../types/Order';
+import { Order, OrderStatus } from '../../types/Order';
 import OrderStatusBadge from './OrderStatusBadge';
 import QRCodeModal from './QRCodeModal';
 import { formatCurrency } from '../../utils/utils';
 import { Clock, QrCode, User, Phone as PhoneIcon } from 'lucide-react';
 
+const ORDER_STATUSES = [
+  { value: 'Pendente', label: 'Pendente' },
+  { value: 'EmPreparo', label: 'Em preparo' },
+  { value: 'Pronto', label: 'Pronto' },
+  { value: 'Entregue', label: 'Entregue' },
+];
+
 interface OrderCardProps {
   order: Order;
-  onStatusChange: (id: number, newStatus: Order['status']) => void;
+  onStatusChange: (orderId: number, newStatus: OrderStatus) => void;
 }
 
 const OrderCard: React.FC<OrderCardProps> = ({ order, onStatusChange }) => {
   const [isQRModalOpen, setIsQRModalOpen] = useState(false);
 
   const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    onStatusChange(order.id, e.target.value as Order['status']);
+    const newStatus = e.target.value as OrderStatus;
+    onStatusChange(order.id, newStatus);
   };
 
   // Modifique a função formatDate para lidar com datas inválidas
-const formatDate = (date: Date | string) => {
-  try {
-    // Se for string, converte para Date
-    const dateObj = typeof date === 'string' ? new Date(date) : date;
-    
-    // Verifica se a data é válida
-    if (isNaN(dateObj.getTime())) {
+  const formatDate = (date: Date | string) => {
+    try {
+        // Se for string, converte para Date
+        const dateObj = typeof date === 'string' ? new Date(date) : date;
+      
+      // Verifica se a data é válida
+      if (isNaN(dateObj.getTime())) {
+        return 'Data inválida';
+      }
+      
+      return new Intl.DateTimeFormat('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      }).format(dateObj);
+    } 
+    catch (error) {
+      console.error('Erro ao formatar data:', error);
       return 'Data inválida';
     }
-    
-    return new Intl.DateTimeFormat('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    }).format(dateObj);
-  } catch (error) {
-    console.error('Erro ao formatar data:', error);
-    return 'Data inválida';
-  }
-};
+  };
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
@@ -104,12 +113,13 @@ const formatDate = (date: Date | string) => {
               id={`status-${order.id}`}
               value={order.status}
               onChange={handleStatusChange}
-              className="flex-1 text-sm border border-gray-300 rounded-md p-1"
+              className="block w-full mt-1 border rounded"
             >
-              <option value="Pendente">Pendente</option>
-              <option value="Em preparo">Em preparo</option>
-              <option value="Pronto">Pronto</option>
-              <option value="Entregue">Entregue</option>
+              {ORDER_STATUSES.map((status) => (
+                <option key={status.value} value={status.value}>
+                  {status.label}
+                </option>
+              ))}
             </select>
           </div>
 

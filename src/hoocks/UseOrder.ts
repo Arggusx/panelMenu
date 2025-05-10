@@ -5,7 +5,7 @@ const apiUrl: string = import.meta.env.VITE_API_URL;
 
 const statusPriority: Record<OrderStatus, number> = {
   "Pendente": 1,
-  "Em preparo": 2,
+  "EmPreparo": 2,
   "Pronto": 3,
   "Entregue": 4
 };
@@ -81,6 +81,26 @@ export const useOrders = () => {
     );
   };
 
+  const patchOrderStatus = async (id: number, newStatus: OrderStatus) => {
+    try {
+      const response = await fetch(`${apiUrl}/${id}/status`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: newStatus }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Erro ao atualizar status');
+      }
+      updateOrderStatus(id, newStatus); // atualiza localmente após sucesso
+    } catch (error) {
+      console.error(`Erro ao atualizar status do pedido #${id}:`, error);
+      // Você pode exibir uma notificação para o usuário aqui
+    }
+  };
+
   const filterOrdersByStatus = (status?: OrderStatus) => {
     const filteredOrders = status 
       ? orders.filter(order => order.status === status)
@@ -99,6 +119,7 @@ export const useOrders = () => {
     loading,
     error,
     updateOrderStatus,
+    patchOrderStatus,
     filterOrdersByStatus
   };
 };

@@ -4,7 +4,7 @@ export interface OrderItem {
   price: number;
 }
 
-export type OrderStatus = 'Pendente' | 'Em preparo' | 'Pronto' | 'Entregue';
+export type OrderStatus = 'Pendente' | 'EmPreparo' | 'Pronto' | 'Entregue';
 
 export interface Order {
   id: number;
