@@ -1,6 +1,6 @@
 # Painel de Administração - Cardápio Online
 
-Este repositório contém o painel de administração do sistema de cardápio online, permitindo que o administrador cadastre, edite e remova itens do cardápio exibido no site principal.
+Este repositório contém o painel de administração do sistema de cardápio online, permitindo que o administrador visualize e edite os status dos pedidos gerados no site principal.
 
 ## Funcionalidades
 
