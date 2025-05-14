@@ -1,18 +1,20 @@
 # Painel de Administração - Cardápio Online
 
-Este repositório contém o painel de administração do sistema de cardápio online, permitindo que o administrador visualize e edite os status dos pedidos gerados no site principal.
+Este repositório contém o painel de administração do sistema de cardápio online, permitindo que o administrador cadastre, edite e remova itens do cardápio exibido no site principal.
 
 ## Funcionalidades
 
+- Login com autenticação para acesso restrito;
 - Visualização e controle de pedidos recebidos;
 - Atualização do status dos pedidos (Pendente, Em preparo, Pronto, Entregue);
+- Geração de QR Code para pedidos prontos, que será enviado ao cliente via WhatsApp;
 - Interface responsiva e intuitiva para uso em tempo real.
 
 ## Como rodar localmente
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   git clone https://github.com/Arggusx/panelMenu.git
    
 2. Acesse a pasta do projeto:
 
@@ -29,12 +31,12 @@ Este repositório contém o painel de administração do sistema de cardápio on
 O painel estará disponível em `http://localhost:3000`.
 
 ## Observações
-* Os dados são armazenados em um banco de dados conectado via API.
 
-* Este repositório é apenas o painel de administração. O site público do cardápio está em outro repositório.
+* Os dados dos pedidos são armazenados em um banco de dados acessado via API.
 
-* Acesso restrito apenas a usuários autenticados.
+* Este repositório é exclusivo para o uso administrativo. O site de exibição do cardápio está em outro repositório.
 
+* O administrador pode gerar um QR Code para pedidos prontos, que será enviado ao cliente via WhatsApp. O garçom validará o pedido escaneando o QR Code ao entregar o prato.
 ==============================================================================================================
 # React + TypeScript + Vite
 
