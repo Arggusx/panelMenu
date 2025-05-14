@@ -4,7 +4,6 @@ Este repositório contém o painel de administração do sistema de cardápio on
 
 ## Funcionalidades
 
-- Login com autenticação para acesso restrito;
 - Visualização e controle de pedidos recebidos;
 - Atualização do status dos pedidos (Pendente, Em preparo, Pronto, Entregue);
 - Interface responsiva e intuitiva para uso em tempo real.
