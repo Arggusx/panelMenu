@@ -1,4 +1,4 @@
-import Dashboard from "./page/Dashdoard";
+import Dashboard from "./page/Dashdoard";arquivo
 import LoginModal from './componentes/adm/loginModal.tsx';
 
 const App: React.FC = () =>  {
@@ -13,7 +13,7 @@ const App: React.FC = () =>  {
         <Dashboard />
         <LoginModal />
       </main>
-    </div>
+</div>
   );
 };
 

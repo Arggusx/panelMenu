@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 
-
-
 export default function LoginModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState('');
