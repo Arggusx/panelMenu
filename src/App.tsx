@@ -1,4 +1,4 @@
-import Dashboard from "./page/Dashdoard";arquivo
+import Dashboard from "./page/Dashdoard";
 import LoginModal from './componentes/adm/loginModal.tsx';
 
 const App: React.FC = () =>  {
