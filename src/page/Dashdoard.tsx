@@ -3,12 +3,19 @@ import OrderCard from '../componentes/adm/OrdrCard';
 import { OrderStatus } from '../types/Order';
 import { useOrders } from '../hoocks/UseOrder';
 import { ClipboardList, AlertTriangle } from 'lucide-react';
+// import LogoutButton from '../componentes/LogoutButton';
+
 
 const Dashboard: React.FC = () => {
   const { orders, loading, error, patchOrderStatus, filterOrdersByStatus } = useOrders();
   const [statusFilter, setStatusFilter] = useState<OrderStatus | undefined>(undefined);
-
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const filteredOrders = filterOrdersByStatus(statusFilter);
+  
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.href = 'login';
+};
 
   // Renderiza indicador de carregamento
   if (loading) {
@@ -48,6 +55,44 @@ const Dashboard: React.FC = () => {
   const deliveredCount = orders.filter(order => order.status === 'Entregue').length;
 
   return (
+    <>
+    <div className=" bg-gray-100"> 
+      <nav className="bg-white shadow-sm">
+        <div className="container mx-auto px-4 py-7 flex justify-between items-center">
+          <h1 className="text-xl font-bold text-blue-600">Hamburgueria Admin</h1>
+          <button
+          onClick={() => setShowLogoutModal(true)}
+          className="relative overflow-hidden logout-btn flex items-center justify-center gap-2 bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl font-medium text-lg transition-all duration-300 transform hover:-translate-y-0.5 hover:rotate-x-6 active:translate-y-0 active:rotate-x-0"
+        >
+          <i className="fas fa-sign-out-alt" />
+          <span>Sair</span>
+        </button>
+        </div>
+      </nav>
+    </div>
+
+    {showLogoutModal && (
+  <div className="fixed inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50">
+    <div className="bg-white p-6 rounded-lg shadow-lg w-80 text-center">
+      <h2 className="text-lg font-semibold text-gray-800 mb-4">Deseja realmente sair?</h2>
+      <div className="flex justify-center gap-4">
+        <button
+          onClick={() => setShowLogoutModal(false)}
+          className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+        >
+          Cancelar
+        </button>
+        <button
+          onClick={handleLogout}
+          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+        >
+          Sair
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
     <div className="container mx-auto px-4 py-6">
       <header className="mb-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
@@ -123,6 +168,7 @@ const Dashboard: React.FC = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 
