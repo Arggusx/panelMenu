@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/LoginAnimations.css";
 
+
 const LoginForm: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -45,6 +46,7 @@ const LoginForm: React.FC = () => {
       localStorage.setItem("user", JSON.stringify(data.user));
       alert("Login realizado com sucesso! Redirecionando para o painel...");
       window.location.href = "/dashboard";
+
     } catch (error) {
       console.error("Erro:", error);
       alert("Erro na conexão. Tente novamente mais tarde.");
@@ -137,23 +139,23 @@ const LoginForm: React.FC = () => {
 
               {/* Alternar modo */}
               <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <input
-                      id="remember-me"
-                      name="remember-me"
-                      type="checkbox"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
-                      Lembrar de mim
-                    </label>
-                  </div>
-                  <div className="text-sm">
-                    <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                      Esqueceu a senha?
-                    </a>
-                  </div>
+                <div className="flex items-center">
+                  <input
+                    id="remember-me"
+                    name="remember-me"
+                    type="checkbox"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  />
+                  <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+                    Lembrar de mim
+                  </label>
                 </div>
+                <div className="text-sm">
+                  <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
+                    Esqueceu a senha?
+                  </a>
+                </div>
+              </div>
               <div className="text-center text-sm mt-4">
                 {mode === "login" ? (
                   <>
