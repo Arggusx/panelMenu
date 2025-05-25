@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from 'react';
 import { Order, OrderStatus } from '../types/Order';
+
+
 const apiUrl: string = import.meta.env.VITE_API_URL;
 
 const statusPriority: Record<OrderStatus, number> = {
@@ -18,21 +20,21 @@ export const useOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        
+
         setLoading(true);
         const response = await fetch(apiUrl);
-        
+
         if (!response.ok) {
           throw new Error(`Erro na requisição: ${response.status}`);
         }
-        
+
         const data = await response.json();
-        
+
         // Converter strings de data para objetos Date com validação
         const ordersWithDates = data.map((order: any) => {
           let createdAt = new Date(order.criadoEm);
           if (isNaN(createdAt.getTime())) createdAt = new Date();
-        
+
           // Parse dos itens
           let items: { name: any; quantity: any; price: any; }[] = [];
           try {
@@ -47,7 +49,7 @@ export const useOrders = () => {
           } catch (e) {
             console.warn(`Erro ao parsear itens do pedido #${order.id}:`, e);
           }
-        
+
           return {
             ...order,
             createdAt,
@@ -59,7 +61,7 @@ export const useOrders = () => {
             table: order.mesa
           };
         });
-        
+
         setOrders(ordersWithDates);
         setError(null);
       } catch (err) {
@@ -74,8 +76,8 @@ export const useOrders = () => {
   }, []);
 
   const updateOrderStatus = (id: number, newStatus: OrderStatus) => {
-    setOrders(prevOrders => 
-      prevOrders.map(order => 
+    setOrders(prevOrders =>
+      prevOrders.map(order =>
         order.id === id ? { ...order, status: newStatus } : order
       )
     );
@@ -90,28 +92,31 @@ export const useOrders = () => {
         },
         body: JSON.stringify({ status: newStatus }),
       });
-      
+
       if (!response.ok) {
         throw new Error('Erro ao atualizar status');
       }
       updateOrderStatus(id, newStatus); // atualiza localmente após sucesso
     } catch (error) {
       console.error(`Erro ao atualizar status do pedido #${id}:`, error);
-      // Você pode exibir uma notificação para o usuário aqui
     }
   };
 
   const filterOrdersByStatus = (status?: OrderStatus) => {
-    const filteredOrders = status 
+    const filteredOrders = status
       ? orders.filter(order => order.status === status)
       : [...orders];
-    
+
+    if (status) {
+      return filteredOrders.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+    }
+
     return filteredOrders.sort((a, b) => {
       const priorityDiff = statusPriority[a.status] - statusPriority[b.status];
       if (priorityDiff !== 0) return priorityDiff;
-      
       return b.createdAt.getTime() - a.createdAt.getTime();
     });
+
   };
 
   return {

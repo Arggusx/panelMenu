@@ -3,12 +3,12 @@ import Dashboard from "./page/Dashdoard";
 import Login from './page/login.tsx';
 import ProtectedRoute from './routes/ProtectedRoute.tsx';
 
-const App: React.FC = () =>  {
+const App: React.FC = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/login" element={<Login />} />   
+        <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={
           <ProtectedRoute>
             <Dashboard />

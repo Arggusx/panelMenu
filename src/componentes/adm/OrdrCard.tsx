@@ -28,14 +28,14 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onStatusChange }) => {
   // Modifique a função formatDate para lidar com datas inválidas
   const formatDate = (date: Date | string) => {
     try {
-        // Se for string, converte para Date
-        const dateObj = typeof date === 'string' ? new Date(date) : date;
-      
+      // Se for string, converte para Date
+      const dateObj = typeof date === 'string' ? new Date(date) : date;
+
       // Verifica se a data é válida
       if (isNaN(dateObj.getTime())) {
         return 'Data inválida';
       }
-      
+
       return new Intl.DateTimeFormat('pt-BR', {
         day: '2-digit',
         month: '2-digit',
@@ -43,7 +43,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order, onStatusChange }) => {
         hour: '2-digit',
         minute: '2-digit',
       }).format(dateObj);
-    } 
+    }
     catch (error) {
       console.error('Erro ao formatar data:', error);
       return 'Data inválida';
