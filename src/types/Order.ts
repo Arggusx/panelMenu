@@ -16,6 +16,7 @@ export interface Order {
   items: OrderItem[];
   total: number;
   table: number;
+  token: string;
 }
 
 export interface Product {

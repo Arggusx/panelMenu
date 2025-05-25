@@ -4,12 +4,19 @@ import { Phone } from 'lucide-react';
 
 interface WhatsAppButtonProps {
   phone: string;
-  message: string;
+  orderId: string;
+  token: string;
+  qrUrl: string;
   className?: string;
 }
 
-const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ phone, message, className = '' }) => {
+const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
+  phone,
+  qrUrl,
+  className = '',
+}) => {
   const handleSendMessage = () => {
+    const message = `Olá! Seu pedido está pronto. Valide no balcão acessando: ${qrUrl}`;
     sendWhatsAppMessage(phone, message);
   };
 

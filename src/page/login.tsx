@@ -7,7 +7,7 @@ const LoginForm: React.FC = () => {
   const [password, setPassword] = useState("");
   const [shake, setShake] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [mode, setMode] = useState<"login" | "register">("login"); // 👈 modo atual
+  const [mode, setMode] = useState<"login" | "register">("login");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,7 +67,7 @@ const LoginForm: React.FC = () => {
                 </p>
               </div>
               <div className="bg-white bg-opacity-20 p-3 rounded-full">
-                <i className="fas fa-utensils text-white text-xl" />
+                <i className="fas fa-utensils text-blue-700 text-xl" />
               </div>
             </div>
           </div>
@@ -187,7 +187,6 @@ const LoginForm: React.FC = () => {
           {/* Footer */}
           <div className="bg-gray-50 px-8 py-4 border-t border-gray-200 text-center text-sm text-gray-500">
             <p>© 2023 Cardápio Online. Todos os direitos reservados.</p>
-            <p className="mt-1">Versão 2.4.1</p>
           </div>
         </div>
       </div>
