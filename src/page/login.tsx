@@ -45,7 +45,7 @@ const LoginForm: React.FC = () => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
       alert("Login realizado com sucesso! Redirecionando para o painel...");
-      window.location.href = "/dashboard";
+      window.location.href = "dashboard";
 
     } catch (error) {
       console.error("Erro:", error);
