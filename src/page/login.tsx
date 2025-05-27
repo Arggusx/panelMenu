@@ -19,7 +19,7 @@ const LoginForm: React.FC = () => {
     }
 
     try {
-      const res = await fetch(`https://online-menu-api-iota.vercel.app/admin/${mode}`, {
+      const res = await fetch(`${import.meta.env.VITE_MENU_API_URL}/admin/${mode}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
