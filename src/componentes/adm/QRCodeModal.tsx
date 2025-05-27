@@ -59,7 +59,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({ order, isOpen, onClose }) => 
 
           {qrUrl && (
             <div>
-              <img className='h-40 w-40' src={`http://localhost:3001/qrcode/${order.id}`} alt="QR Code" />
+              <img className='h-40 w-40' src={`${import.meta.env.VITE_MENU_API_URL}/qrcode/${order.id}`} alt="QR Code" />
             </div>
           )}
         </div>
@@ -68,7 +68,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({ order, isOpen, onClose }) => 
           phone={order.customerPhone}
           orderId={order.id.toString()}
           token={order.token}
-          qrUrl={`http://localhost:3001/qrcode/${order.id}`}
+          qrUrl={`${import.meta.env.VITE_MENU_API_URL}/qrcode/${order.id}`}
           className="w-full"
         />
       </div>
