@@ -2,9 +2,6 @@
 import { useState, useEffect } from 'react';
 import { Order, OrderStatus } from '../types/Order';
 
-
-const apiUrl: string = import.meta.env.VITE_API_URL;
-
 const statusPriority: Record<OrderStatus, number> = {
   "Pendente": 1,
   "EmPreparo": 2,
@@ -22,7 +19,7 @@ export const useOrders = () => {
       try {
 
         setLoading(true);
-        const response = await fetch(apiUrl);
+        const response = await fetch(`${import.meta.env.VITE_MENU_API_URL}/pedidos`);
 
         if (!response.ok) {
           throw new Error(`Erro na requisição: ${response.status}`);
@@ -85,7 +82,7 @@ export const useOrders = () => {
 
   const patchOrderStatus = async (id: number, newStatus: OrderStatus) => {
     try {
-      const response = await fetch(`${apiUrl}/${id}/status`, {
+      const response = await fetch(`${process.env.MENU_API_URL}/${id}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

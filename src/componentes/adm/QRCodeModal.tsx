@@ -17,7 +17,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({ order, isOpen, onClose }) => 
 
       if (!order.token) return;
       // Talvez precise colocar "/pedidos/qrcode"
-      fetch(`https://panel-menu-eng-soft.vercel.app/qrcode/${order.id}/${order.token}`)
+      fetch(`${import.meta.env.URL_QRCODE_MODAL}/qrcode/${order.id}/${order.token}`)
         .then(res => res.blob())
         .then(blob => {
           const url = URL.createObjectURL(blob);
@@ -59,7 +59,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({ order, isOpen, onClose }) => 
 
           {qrUrl && (
             <div>
-              <img className='h-40 w-40' src={`https://online-menu-api-iota.vercel.app/qrcode/${order.id}`} alt="QR Code" />
+              <img className='h-40 w-40' src={`http://localhost:3001/qrcode/${order.id}`} alt="QR Code" />
             </div>
           )}
         </div>
@@ -68,7 +68,7 @@ const QRCodeModal: React.FC<QRCodeModalProps> = ({ order, isOpen, onClose }) => 
           phone={order.customerPhone}
           orderId={order.id.toString()}
           token={order.token}
-          qrUrl={`https://online-menu-api-iota.vercel.app/qrcode/${order.id}`}
+          qrUrl={`http://localhost:3001/qrcode/${order.id}`}
           className="w-full"
         />
       </div>
