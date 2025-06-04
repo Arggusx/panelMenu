@@ -82,7 +82,7 @@ export const useOrders = () => {
 
   const patchOrderStatus = async (id: number, newStatus: OrderStatus) => {
     try {
-      const response = await fetch(`${process.env.MENU_API_URL}/${id}/status`, {
+      const response = await fetch(`${import.meta.env.VITE_MENU_API_URL}/pedidos/${id}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
