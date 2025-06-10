@@ -150,43 +150,18 @@ const LoginForm: React.FC = () => {
                     Lembrar de mim
                   </label>
                 </div>
-                <div className="text-sm">
+                {/*<div className="text-sm">
                   <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
                     Esqueceu a senha?
                   </a>
-                </div>
-              </div>
-              <div className="text-center text-sm mt-4">
-                {mode === "login" ? (
-                  <>
-                    Ainda não tem uma conta?{" "}
-                    <button
-                      type="button"
-                      onClick={() => setMode("register")}
-                      className="text-blue-600 hover:underline"
-                    >
-                      Registrar
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    Já tem uma conta?{" "}
-                    <button
-                      type="button"
-                      onClick={() => setMode("login")}
-                      className="text-blue-600 hover:underline"
-                    >
-                      Entrar
-                    </button>
-                  </>
-                )}
+                </div>*/}
               </div>
             </form>
           </div>
 
           {/* Footer */}
           <div className="bg-gray-50 px-8 py-4 border-t border-gray-200 text-center text-sm text-gray-500">
-            <p>© 2023 Cardápio Online. Todos os direitos reservados.</p>
+            <p>© 2025 Cardápio Online. Todos os direitos reservados.</p>
           </div>
         </div>
       </div>
