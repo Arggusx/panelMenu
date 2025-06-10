@@ -51,6 +51,10 @@ const Dashboard: React.FC = () => {
   const preparingCount = orders.filter(order => order.status === 'EmPreparo').length;
   const readyCount = orders.filter(order => order.status === 'Pronto').length;
   const deliveredCount = orders.filter(order => order.status === 'Entregue').length;
+  const totalCount = pendingCount + preparingCount + readyCount + deliveredCount;
+
+
+
 
   return (
     <>
@@ -98,27 +102,14 @@ const Dashboard: React.FC = () => {
               <ClipboardList size={32} className="text-blue-600" />
               <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Painel de Pedidos</h1>
             </div>
-
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-gray-700">Filtrar por status:</span>
-              <select
-                value={statusFilter || ''}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setStatusFilter(value === '' ? undefined : value as OrderStatus);
-                }}
-                className="border border-gray-300 rounded-md p-2 text-sm"
-              >
-                <option value="">Todos</option>
-                <option value="Pendente">Pendente</option>
-                <option value="Em preparo">Em preparo</option>
-                <option value="Pronto">Pronto</option>
-                <option value="Entregue">Entregue</option>
-              </select>
-            </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
+            <div className="bg-gray-100 border border-gray-200 rounded-lg p-3 cursor-pointer hover:bg-gray-200 transition-colors"
+              onClick={() => setStatusFilter(undefined)}>
+              <p className="text-sm text-black font-medium">Todos</p>
+              <p className="text-xl font-bold text-black">{totalCount}</p>
+            </div>
             <div className="bg-yellow-50 border border-yellow-100 rounded-lg p-3 cursor-pointer hover:bg-yellow-100 transition-colors"
               onClick={() => setStatusFilter('Pendente')}>
               <p className="text-sm text-yellow-800 font-medium">Pendentes</p>
